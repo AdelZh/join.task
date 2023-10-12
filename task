@@ -1,0 +1,157 @@
+create table if not exists stores
+(
+    id           serial primary key,
+    name         varchar,
+    instagram    varchar,
+    phone_number varchar,
+    address      varchar
+);
+create table if not exists categories
+(
+    id         serial primary key,
+    name       varchar
+);
+create table if not exists products
+(
+    id          serial primary key,
+    name        varchar,
+    description varchar(1000),
+    price       decimal,
+    store_id    int references stores (id),
+    category_id int references categories(id)
+);
+create table if not exists clients
+(
+    id           serial primary key,
+    full_name    varchar,
+    inn          varchar,
+    email        varchar unique ,
+    phone_number integer,
+    balance      integer
+);
+create table if not exists feedbacks
+(
+    id         serial primary key,
+    image      varchar,
+    description varchar(1000),
+    client_id  int references clients (id),
+    product_id int references products (id)
+);
+create table if not exists product_client
+(
+    id         serial primary key,
+    product_id int references products (id),
+    client_id  int references clients (id)
+);
+    insert into stores (name ,instagram, phone_number, address )values
+    ('Amin Trading', 'amin_trading', null, 'Jibek Jolu 112'),
+    ('Asia', 'asia_kg', '555-32-33-23', 'Vostok-5'),
+    ('Globus', 'globus_start', '700-32-11-21', 'Bishkek'),
+    ('Brand Mix', 'brand_bishkek', null, 'Italy'),
+    ('Gadget', 'gadget_store', '555555555', 'Russia'),
+    ('Toyota', 'toyota_kg', '666666666', '7 mkr'),
+    ('Market Store', 'market_store', '777777777','Pokrovka'),
+    ('Narodnyi', null, '888888888', 'Naryn'),
+    ('Mashina_kg', 'mashina_kg', '999999999', 'Seul'),
+    ('Fix price', null, '000000000', 'Home');
+INSERT INTO categories (name)
+VALUES
+    ('juice'),
+    ('car'),
+    ('smartphone'),
+    ('vegetables');
+INSERT INTO products (name, description, price, store_id,category_id)
+VALUES
+    ('Hyunday Solaris', 'car store', 15000, 1,2),
+    ('Coca-Cola', 'juice', 50.99, 2,1),
+    ('Hyunday Sonata', 'best car', 60.99, null,2),
+    ('Samsung', 'Description 7', 70.99, 7,3),
+    ('Iphone', 'Description 8', 80.99, 7,3),
+    ('Fanta', 'juice', 90.99, 2,null),
+    ('Toyota', 'cars', 100.99, 6,2),
+    ('Potatoes', 'Description 11', null, 8,4),
+    ('tomato', 'Description 12', 120.99, 8,4),
+    ('Tv', null, 130.99, null,null);
+-- clients 10
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Sadyr Japarov', '123456789', 'sadyr@example.com', 12345678, 1000);
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Aigul Japarova', '987654321', 'aigul@example.com', 98765432, 2000);
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Ainazik Toktomamatova', '456789123', 'ainaz@example.com', 45678912, 5000);
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Aijamal Asangazieva', '123456789', 'aijamal@example.com', 12345670, 1500);
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Kamchy Kuzobaev', '987654321', 'kamchy@example.com', 98765430, 2300);
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Aizat Duisheeva', '456789123', 'aizat@example.com', 45678910, 5500);
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Datka Mamatzhanova', '123456789', 'datka@example.com', 12345890, 100);
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Nurisa Mamiraim', '987654321', 'nurisa@example.com', 98765410, 200);
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Cristiano Ronaldo', '456789123', 'ronaldo@example.com', 45678930, 50);
+INSERT INTO clients (full_name, inn, email, phone_number, balance)
+VALUES ('Dinara Bakir kyzy', '456789123', 'dinara@example.com', 45678230, 500);
+-- feedbacks 12
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image1.jpg', 'Feedback for Product 1', 1, 1);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image2.jpg', 'Feedback for Product 2', 1, 2);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image3.jpg', 'Feedback for Product 3', 2, 3);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image1.jpg', 'Feedback for Product 4', 1, 4);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image2.jpg', 'Feedback for Product 6', 1, 6);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image3.jpg', 'Feedback for Product 1', 4, 1);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image1.jpg', 'Feedback for Product 7', 4, 7);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image2.jpg', 'Feedback for Product 5', 5, 5);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image3.jpg', 'Feedback for Product 10', 7, 10);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image1.jpg', 'Feedback for Product 10', 10, 10);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image2.jpg', 'Feedback for Product 7', 10, 7);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image3.jpg', 'Feedback for Product 3', 7, 7);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image3.jpg', 'Feedback for Product ', null, null);
+INSERT INTO feedbacks (image, description, client_id, product_id)
+VALUES ('image3.jpg', 'Feedback for Product ', null, null);
+-- product_client 16
+INSERT INTO product_client (product_id, client_id)
+VALUES (10, 1);
+INSERT INTO product_client (product_id, client_id)
+VALUES (10, 10);
+INSERT INTO product_client (product_id, client_id)
+VALUES (10, 5);
+INSERT INTO product_client (product_id, client_id)
+VALUES (6, 1);
+INSERT INTO product_client (product_id, client_id)
+VALUES (6, 7);
+INSERT INTO product_client (product_id, client_id)
+VALUES (2, 2);
+INSERT INTO product_client (product_id, client_id)
+VALUES (3, 4);
+INSERT INTO product_client (product_id, client_id)
+VALUES (5, 6);
+INSERT INTO product_client (product_id, client_id)
+VALUES (7, 8);
+INSERT INTO product_client (product_id, client_id)
+VALUES (2, 1);
+INSERT INTO product_client (product_id, client_id)
+VALUES (9, 1);
+INSERT INTO product_client (product_id, client_id)
+VALUES (4, 7);
+INSERT INTO product_client (product_id, client_id)
+VALUES (8, 8);
+INSERT INTO product_client (product_id, client_id)
+VALUES (3, 2);
+INSERT INTO product_client (product_id, client_id)
+VALUES (3, 1);
+INSERT INTO product_client (product_id, client_id)
+VALUES (10, 2);
