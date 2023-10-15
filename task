@@ -210,3 +210,19 @@ from products p
 left join Categories c on p.category_id=c.id
 where c.name='juice'
 
+10) select s.name,
+   (select avg(p.price)
+	from Products p
+	where s.id=p.store_id
+) as products from stores s
+where s.name='Asia'
+
+11) select s.name,
+   (select count(*)
+	from Products p
+	where s.id=p.store_id
+)as store_name from stores s
+
+
+
+
