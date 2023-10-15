@@ -235,5 +235,23 @@ from Products p
 inner join Stores s on s.id=p.store_id
 where s.name='Asia'
 
+18) select p.name as product_name, count(f.id) as count
+from feedbacks f
+inner join products p on p.id=f.product_id
+group by p.name
+
+19) select s.name,
+    (select sum(c.balance)
+	 from clients c
+	 where c.id=s.id
+)as store_name from stores s
+where s.name='Asia'
+
+
+
+20) select s.name, p.name as product_name, p.price as product_price
+from Products p
+inner join Stores s on s.id=p.store_id
+where s.name='Asia'
 
 
