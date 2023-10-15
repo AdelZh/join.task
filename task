@@ -278,7 +278,15 @@ where p.price=15000
 from feedbacks f
 inner join products p on p.id=f.product_id
 
+25) select count(product_id) from product_client group by product_id order by count(*)=2
 25) 
+select c.full_name
+from clients c
+inner join product_client pc on c.id=pc.client_id
+group by c.full_name
+having count(pc.product_id)=2
+
+
 
 
 
