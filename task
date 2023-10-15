@@ -192,3 +192,21 @@ VALUES (10, 2);
 --28 Суроо: Ар бир продукт үчүн продукт аталыштарын жана комментарийлердин жалпы санын алыңыз.
 --29 Суроо: Белгилүү бир дүкөндөн продуктыларды сатып алган кардарларды чыгарып алыңыз.
 --30 Суроо: Комментарийлери жок продукталарды алыңыз.
+
+
+2) select c.*, p.name
+from feedbacks f
+left join clients c on c.id=f.client_id
+left join products p on p.id=f.product_id
+where p.name='Coca-Cola'
+
+
+
+
+
+
+5) select p.name, c.name
+from products p
+left join Categories c on p.category_id=c.id
+where c.name='juice'
+
