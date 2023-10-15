@@ -254,4 +254,31 @@ from Products p
 inner join Stores s on s.id=p.store_id
 where s.name='Asia'
 
+21) select  c.*
+from clients c
+inner join product_client pc on c.id=pc.client_id
+join products p on p.id=pc.product_id
+join categories cat on c.id=p.category_id
+where cat.name='juice'
+
+22) select s.name,
+    (select avg(c.balance)
+	 from clients c
+	 where c.id=s.id
+)as store_name from stores s
+where s.name='Asia'
+
+23) select c.*
+from clients c
+inner join product_client pc on c.id=pc.client_id
+join products p on p.id=pc.product_id
+where p.price=15000
+
+24) select p.*, f.description
+from feedbacks f
+inner join products p on p.id=f.product_id
+
+25) 
+
+
 
