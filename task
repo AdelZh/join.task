@@ -223,6 +223,13 @@ where s.name='Asia'
 	where s.id=p.store_id
 )as store_name from stores s
 
+13) select distinct c.full_name, p.name
+from clients c
+join product_client pc on c.id=pc.client_id
+join products p on p.id=pc.product_id
+where p.name='Coca-Cola'
+
+
 
 
 
